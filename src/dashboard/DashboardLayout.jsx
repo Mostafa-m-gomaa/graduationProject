@@ -27,7 +27,7 @@ const DashboardLayout = () => {
       .then((data) => {
         if (data.succes === "true") {
           toast.success("لقد قمنا بارسال رمز لبريدك الالكتروني");
-          console.log(0);
+       
           nav("/active");
         }
       })

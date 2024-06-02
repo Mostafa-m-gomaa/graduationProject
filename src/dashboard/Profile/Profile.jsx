@@ -3,14 +3,16 @@ import MyPackages from "./MyPackages";
 import EditPassword from "./EditPassword";
 import EditData from "./EditData";
 import { AppContext, route } from "../../App";
-import { useContext } from "react";
+import { useContext, useEffect , useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-hot-toast";
 import AddReview from "./AddReview";
+import './profile.css'
 const Profile = () => {
   const data = JSON.parse(localStorage.getItem("data"));
   const token = localStorage.getItem("token");
   const { setLoading } = useContext(AppContext);
+  const [requests,setRequests]=useState([])
   const nav = useNavigate();
 
   const onActive = async () => {
@@ -31,6 +33,20 @@ const Profile = () => {
       .catch(() => toast.error("Something went wrong"))
       .finally(() => setLoading(false));
   };
+  useEffect(() => {
+    fetch(`${route}/instructorsReqs/my-reqs`,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+     
+      if(data.data){
+        setRequests(data.data)
+      }
+    })
+  }, []);
 
   return (
     <div className="p-4 w-full">
@@ -75,17 +91,44 @@ const Profile = () => {
           <EditPassword />
           <AddReview />
           <EditData />
-          <a
-            href={``}
-       
-            className="flex items-center justify-center w-[200px] h-[40px] bg-gold text-dark gap-4 font-semibold rounded-2xl"
-          >
-            <i className="fa-solid fa-robot"></i>
-            Are You Instructor
-           </a>
+   
         </div>
       </div>
+  {requests.length>0  ?    <div class="e-card playing">
+  <div class="image"></div>
+  
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+      <div class="infotop">
+   <br />  
+   <h2>
+       طلبات الانضمام للتدريس
+        </h2>    
+        {requests.map((req, index) => {
+  const isLast = index === requests.length - 1; // Determine if this is the last element
+  return isLast ? (
+    <div className="req" key={index}>
+      {req.status === "pending" ? <div> لديك طلب جار مراجعته </div> : null}
+      {req.status === "reject" ? <div>  تم رفض طلبك يمكنك اعادة ارسال الطلب</div> : null}
+      {req.status === "accepted" ? (
+        <div>
+          <div> تم قبول طلبك </div>
+          <a className="comic-button" href="http://localhost:5175/" target="_blank">
+            اذهب الي لوحة التحكم
+          </a>
+        </div>
+      ) : null}
+    </div>
+  ) : null;
+})}
+<br />
+<div class="name">{localStorage.getItem("userName")}</div>
+  </div>
+</div> : null
+  }
       <MyProducts />
+   
       {/* <MyPackages /> */}
     </div>
   );

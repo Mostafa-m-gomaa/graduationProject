@@ -38,12 +38,13 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import the AOS styles
 import { AnimatePresence } from "framer-motion";
 import Legal from "./landingPage/components/Legal";
+import InstructorRequest from "./dashboard/InstructorRequest";
 
 
 
 // *******production
 // export const route = "https://api.wealthmakers-fx.com/api/v1/";
-export const route = "https://api.softwave-dev.com/api/v1/";
+export const route = "https://gp.softwave-dev.com/api/v1/";
 
 export const AppContext = createContext();
 
@@ -155,6 +156,7 @@ export default function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/education" element={<EducationCategories />} />
             <Route path="/education/:catId" element={<Courses />} />
+            <Route path="/instructor-request" element={<InstructorRequest />} />
         
             <Route
               path="/education/:catId/course/:courseId"

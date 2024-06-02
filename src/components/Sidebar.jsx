@@ -70,19 +70,7 @@ const Sidebar = () => {
           <i className="fa-solid fa-graduation-cap ml-3"></i>
           الكورسات
         </NavLink>
-        {/* <NavLink
-          to="/analytic"
-          className={({ isActive }) =>
-            `${
-              isActive
-                ? "bg-gold text-dark"
-                : "hover:bg-gold hover:text-dark transition-all"
-            } pt-2 pb-3 px-2 rounded-lg  block w-full text-xl my-2 `
-          }
-        >
-          <i className="fa-solid fa-chart-simple ml-3"></i>
-          الاحصائيات
-        </NavLink> */}
+    
         <NavLink
           to="/lives"
           className={({ isActive }) =>
@@ -96,6 +84,19 @@ const Sidebar = () => {
           <i className="fa-solid fa-house-signal ml-3"></i>
           البث المباشر
         </NavLink>
+     {localStorage.getItem("role") === "instructor" ? null :    <NavLink
+          to="/instructor-request"
+          className={({ isActive }) =>
+            `${
+              isActive
+                ? "bg-gold text-dark"
+                : "hover:bg-gold hover:text-dark transition-all"
+            } pt-2 pb-3 px-2 rounded-lg  block w-full text-xl `
+          }
+        >
+         <i class="fa-solid fa-person-chalkboard"></i>
+         التقديم كمدرس
+        </NavLink>}
       </div>
       <div className="border-b border-b-gray py-6 my-4">
         {/* <NavLink
@@ -111,7 +112,7 @@ const Sidebar = () => {
           <i className="fa-solid fa-cube ml-3"></i>
           الباقات
         </NavLink> */}
-        <NavLink
+        {/* <NavLink
           to="/store"
           className={({ isActive }) =>
             `${
@@ -123,8 +124,8 @@ const Sidebar = () => {
         >
           <i className="fa-solid fa-bag-shopping ml-3"></i>
           المتجر
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           to="/freestore"
           className={({ isActive }) =>
             `${
@@ -136,10 +137,10 @@ const Sidebar = () => {
         >
           <i className="fa-solid fa-bag-shopping ml-3"></i>
           المنتجات المجانية
-        </NavLink>
+        </NavLink> */}
  
       </div>
-      <div>
+      {/* <div>
         <div className="flex justify-center my-4">
           <ThemeChanger />
         </div>
@@ -154,7 +155,7 @@ const Sidebar = () => {
             {cart?.cartItems?.length}
           </span>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,17 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root{
+  overflow: hidden
+}
+
 body {
   @apply bg-dark;
-  direction: rtl;
+  /* direction: rtl; */
   top: 0 !important ;
  background-image: url('./assets/ggrgr.png');
  background-repeat: no-repeat;
  background-size: cover;
+
 }
 html {
   color: white;
   scroll-behavior: smooth;
+
 }
 .hoverGold {
   @apply hover:text-gold transition;
@@ -22,6 +29,8 @@ html {
   --primary-clr3: #01004C ;
   --secondry-clr1: #FFB607 ;
   --secondry-clr2: #F6BABA ;
+  --main :#5BDEED ;
+  --sub : #F6F6F6;
 
 }
 #root{
@@ -159,6 +168,10 @@ overflow-x: hidden
   top: 0;
   appearance: none;
   cursor: pointer;
+}
+.container{
+  width: 90%;
+  margin: auto;
 }
 
 .cats .btn {

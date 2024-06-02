@@ -5,6 +5,8 @@
   flex-direction: column;
   gap: 30px;
   position: relative;
+  height: 100vh;
+  background-color: white;
 }
 .main .banner {
   width: 50%;
@@ -92,6 +94,8 @@
   min-width: 90%;
   margin: auto;
   border-radius: 10px;
+  max-height: 150px;
+  min-height: 150px;
 }
 .product .prod-cont .prod-card .num {
   font-size: 25px;
@@ -239,4 +243,71 @@
   100% {
     transform: translateY(10px);
   }
+}
+.show-courses {
+  position: fixed;
+  width: 100%;
+  z-index: 400;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.show-courses .courses-over {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.671);
+  z-index: 401;
+}
+.show-courses .prod-cont {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  z-index: 402;
+  margin: auto;
+  padding: 40px 0;
+  position: relative;
+  background-color: white;
+  width: 70%;
+  border-radius: 20px;
+  overflow-y: scroll;
+  height: 90%;
+  margin-top: 30px;
+}
+.show-courses .prod-cont .prod-card {
+  width: 40%;
+  background: rgba(138, 112, 112, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+}
+.show-courses .prod-cont .prod-card a {
+  margin: auto;
+  background-color: white;
+  color: black;
+  font-weight: 800;
+  padding: 10px 20px;
+  border-radius: 25px;
+}
+.show-courses .prod-cont .prod-card img {
+  max-width: 90%;
+  min-width: 90%;
+  max-height: 150px;
+  min-height: 150px;
+  margin: auto;
+  border-radius: 10px;
+}
+.show-courses .prod-cont .prod-card .num {
+  font-size: 20px;
+  margin: 30px 60px;
+  color: rgb(159, 165, 170);
+  font-weight: bolder;
 }/*# sourceMappingURL=home.css.map */
