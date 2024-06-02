@@ -27,8 +27,11 @@
   color: black;
 }
 .header-one .container .left img {
-  width: 150px;
+  width: 250px;
   margin-right: 70px;
+  background-color: black;
+  padding: 10px 25px;
+  border-radius: 20px;
 }
 .header-one .container .right {
   display: flex;
