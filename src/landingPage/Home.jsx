@@ -19,9 +19,16 @@ const Home = () => {
   const [showCourses,setShowCourses] = useState(false)
   const [courses,setCourses] = useState([])
   const {setLoading}=useContext(AppContext)
+  const [catId,setCatId] = useState("")
+
+
+  const getSpicCourse =()=>{
+    sessionStorage.setItem("catId",catId)
+  }
 
   const getCourses = (e,id) => {
 setLoading(true)
+setCatId(id)
     e.preventDefault();
     fetch(`${route}/courses/relatedCourses/${id}`)
     .then((res) => res.json())
@@ -35,6 +42,7 @@ setLoading(true)
     });
   }
   
+
   useEffect(() => {
     axios
       .get(`${route}users/instractors`)
@@ -78,7 +86,7 @@ setLoading(true)
                     alt=""
                   />
                   <div className="num">{product.title}</div>
-                  <Link onClick={(e)=>getCourses(e,product._id)} to={"/login"}>اطلع</Link>
+                  <Link onClick={()=>getSpicCourse()} to={"/login"}>Enroll</Link>
              
                 </div>
               ))}
@@ -118,7 +126,7 @@ setLoading(true)
                     alt=""
                   />
                   <div className="num">{product.title}</div>
-                  <Link onClick={(e)=>getCourses(e,product._id)} to={"/login"}>اطلع</Link>
+                  <Link onClick={(e)=>getCourses(e,product._id)} to={"/lo"}>اطلع</Link>
              
                 </div>
               ))}
@@ -127,7 +135,7 @@ setLoading(true)
         </div>
 
         {/* leaders */}
-        <div className="leaders" id="leads">
+        <div className="leaders" id="leaders" >
           <img src={circle} data-aos-duration={`2000`} data-aos="fade-right"  className="circle" alt="" />
           <img src={shape} data-aos-duration={`2000`} data-aos="fade-left"   className="shape" alt="" />
 <h1>القادة</h1>

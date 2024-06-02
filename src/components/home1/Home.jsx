@@ -5,7 +5,7 @@ import Who from './who/Who'
 
 const HomeOne = () => {
   return (
-    <div className="home">
+    <div className="home" id="home">
         <Landing />
         <Who />
     </div>

@@ -3,10 +3,12 @@ import DashboardSlide from "../components/DashboardSlide";
 import PostCard from "../components/PostCard";
 import { route } from "../App";
 import EconomicCalendar from "../components/EconomicCalendar";
+import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const [posts, setPosts] = useState([]);
   const [ads, setAds] = useState([]);
   const token = localStorage.getItem("token");
+  const history = useNavigate()
 
   // pagenation
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,6 +38,12 @@ const Dashboard = () => {
         // setPagesNumber(data.paginationResult.numberOfPages);
       });
   }, [token]);
+  useEffect(()=>{
+    if(sessionStorage.getItem("catId")){
+      history(`/education/${sessionStorage.getItem("catId")}`)
+    }
+
+  },[])
   return (
     <div className="home-for-login" ref={contianer}>
       <DashboardSlide />

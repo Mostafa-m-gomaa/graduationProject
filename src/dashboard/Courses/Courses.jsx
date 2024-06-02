@@ -29,6 +29,9 @@ const Courses = () => {
   // }, []);
   useEffect(() => {
     setLoading(true);
+    if(sessionStorage.getItem("catId")){
+      sessionStorage.removeItem("catId")
+    }
 
     fetch(
       `${route}/categories/${catId}/courses`,
@@ -63,7 +66,9 @@ const Courses = () => {
         
   //     })
   // }
+
   const buy = async (id) => {
+    setLoading(true);
     try {
       const response = await fetch(`${route}orders/checkout-session/${id}`, {
         method: "PUT",
@@ -78,9 +83,10 @@ const Courses = () => {
   
       const data = await response.json();
       console.log(data);
-      
-      // Handle successful checkout session initiation here
-      // For example, redirecting the user or updating the UI
+      if(data.status="success"){
+        window.location.href = data.session.url;
+      }
+    
     } catch (error) {
       console.error("Error:", error);
       // Handle errors here, such as displaying a message to the user
@@ -111,14 +117,43 @@ const Courses = () => {
               onClick={preventLink}
             >
               <div className="category" key={course._id}>
-                <img src={course.image}  className="aspect-square  rounded-2xl" alt="" />
                 <h2 className="text-center p-2 sm:text-lg md:text-xl lg:text-2xl">
                   {course.title}
                 </h2>
                 <h2 className="text-center p-2 sm:text-lg md:text-xl lg:text-2xl">
-                  {course.price}$
+                 By : {course.instructor.username}
                 </h2>
-                <h2 onClick={()=>buy(course._id)} className="text-center p-2 sm:text-lg md:text-xl lg:text-2xl">
+                <img src={course.image}  className="aspect-square  rounded-2xl" alt="" />
+                <h2 style={{
+                  textAlign: "center",
+              
+                  width: "fit-content",
+                  margin: " 15px auto",
+                  padding: "5px",
+                  borderRadius: "10px",
+                }}>
+                  {course.description}$
+                </h2>
+                <h2 style={{
+                  textAlign: "center",
+                  border: "1px solid #fff",
+                  width: "fit-content",
+                  margin: " 15px auto",
+                  padding: "5px",
+                  borderRadius: "10px",
+                }}>
+                  {course.price}$ after discount {course.priceAfterDiscount} $
+                </h2>
+                <h2 onClick={()=>buy(course._id)} style={{
+                  textAlign: "center",
+                  border: "1px solid #fff",
+                  width: "fit-content",
+                  margin: " auto",
+                  padding: "5px 15px",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  backgroundColor: "#ffb900",
+                }}>
                   Enroll
                 </h2>
               </div>

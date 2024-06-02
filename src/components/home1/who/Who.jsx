@@ -14,8 +14,14 @@ const Who = () => {
 <Link to="/about">المزيد !</Link>
     </div>
     <div className="right">
-        <img src={shape} alt="" className="shape-one" />
-        <img src={person} alt="" className="person" />
+        <img src={shape} alt="" className="shape-one" data-aos="fade-right"
+     data-aos-anchor="#example-anchor"
+     data-aos-offset="500"
+     data-aos-duration="500" />
+        <img src={person} alt="" className="person" data-aos="fade-left"
+     data-aos-anchor="#example-anchor"
+     data-aos-offset="500"
+     data-aos-duration="700" />
     </div>
     </div>
     </div>

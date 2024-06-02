@@ -11,6 +11,9 @@
   color: black;
   position: relative;
   z-index: 100;
+  position: fixed;
+  width: 100%;
+  z-index: 380;
     .container{
         display: flex;
         justify-content: space-between;
