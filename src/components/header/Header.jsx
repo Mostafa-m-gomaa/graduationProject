@@ -11,7 +11,7 @@ const HeaderOne = () => {
         <div className="container">
             <div className="left">
             <img src={logo} alt="" className='logo' />
-            <a href="#home">الرئيسية</a>
+            <Link to="/">الرئيسية</Link>
             <a href="#course">أقسام الكورسات</a>
             <a href="#leaders">ِشركاء النجاح</a>
             <a href="#who">من نحن</a>
