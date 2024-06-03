@@ -157,6 +157,7 @@ export default function App() {
             <Route path="/education" element={<EducationCategories />} />
             <Route path="/education/:catId" element={<Courses />} />
             <Route path="/instructor-request" element={<InstructorRequest />} />
+            <Route path="/course/:id" element={<SingelCourse/>} />
         
             <Route
               path="/education/:catId/course/:courseId"

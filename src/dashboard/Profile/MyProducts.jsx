@@ -3,25 +3,35 @@ import { route } from "../../App";
 import LoadingSpinner from "../../landingPage/components/LoadingSpinner";
 
 import image from "../../assets/productimage.webp";
+import { Link } from "react-router-dom";
 const MyProducts = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
   const token = localStorage.getItem("token");
+
   useEffect(() => {
-    setIsLoading(true);
-    fetch(`${route}store/products/MyProducts`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.data) {
-          setProducts(data.data);
-        }
+
+  
+      const endpoint = `${route}/courses/MyCourses`;
+  
+      fetch(endpoint, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .finally(() => setIsLoading(false));
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("data",data);
+          if (data.data) {
+            setProducts(data.data);
+        
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    
   }, []);
 
   return (
@@ -32,13 +42,14 @@ const MyProducts = () => {
       {isLoading && <LoadingSpinner />}
       <div className=" sm:p-5 rounded-2xl border border-gray my-8">
         {products.map((item) => (
-          <div
+          <Link
+          to={`/course/${item._id}`}
             key={item._id}
             className="border-b  border-b-gray p-4 flex justify-center items-center flex-col gap-4 sm:flex-row sm:justify-between"
           >
             <div className="flex items-center gap-4">
               <img
-                src={item.imageCover}
+                src={item.image}
                 className="w-[60px]"
                 alt=""
                 onError={(e) => {
@@ -48,17 +59,8 @@ const MyProducts = () => {
               />
               <h2>{item?.title}</h2>
             </div>
-            <a
-              href={item.pdf}
-              download={item.title}
-              className="flex items-center "
-            >
-              <div className="px-2 gap-2 flex justify-center items-center rounded-full bg-lightGold text-gold cursor-pointer mr-5 h-8">
-                <i className="fa-solid fa-download"></i>
-                تحميل
-              </div>
-            </a>
-          </div>
+       
+          </Link>
         ))}
       </div>
     </div>
