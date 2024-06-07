@@ -12,12 +12,12 @@ const SingelCourse = () => {
   const [lessons, setLessons] = useState([]);
 
   const token = localStorage.getItem("token");
-  const courseId = useParams().courseId;
+  const courseId = useParams().id;
 
   useEffect(() => {
     setLoading(true);
 
-    fetch(`${route}/lessons/relatedLessons/${courseId}`, {
+    fetch(`${route}/lessons/incourse/${courseId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

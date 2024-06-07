@@ -72,18 +72,59 @@ const Lives = () => {
         });
     }
   };
+  const getAllMyLives = () => {
+    setIsAll(true);
+    setMyFollow(false);
+   
+
+    fetch(`${route}lives`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.data) {
+          setLives(data.data);
+        } else {
+          setLives([]);
+        }
+      });
+  };
+  const getAllMyFollowedLives = () => {
+
+
+    fetch(`${route}myFollowedLives`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.data) {
+          setLives(data.data);
+        } else {
+          setLives([]);
+        }
+      });
+  };
 
   useEffect(() => {
-    getByDate(currentTime);
+    // getByDate(currentTime);
+    getAllMyLives()
   }, []);
   return (
     <div>
       <div className="p-6 gap-6 lg:grid lg:grid-cols-5">
-        <div className="col-span-3 ">
+        {/* <div className="col-span-3 ">
           <div className="bg-dark">
             <Calendar onChange={getByDate} value={date} className="bg-dark" />
           </div>
-        </div>
+        </div> */}
         <div className="bg-dark col-span-2 p-2 rounded-2xl border border-gray">
           <div className="flex pb-2 gap-2 px-2 mb-4  text-sm border-b border-b-gray">
             <div
@@ -94,7 +135,8 @@ const Lives = () => {
               }`}
               onClick={() => {
                 setMyFollow(false);
-                getAll(false);
+                // getAll(false);
+                getAllMyLives
               }}
             >
               الكل
@@ -107,7 +149,8 @@ const Lives = () => {
               }`}
               onClick={() => {
                 setMyFollow(true);
-                getAll(true);
+                // getAll(true);
+                getAllMyFollowedLives
               }}
             >
               التي اتابعها فقط

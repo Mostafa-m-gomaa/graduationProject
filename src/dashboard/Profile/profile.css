@@ -127,4 +127,16 @@
   background-color: #fcf414;
   box-shadow: none;
   transform: translateY(4px);
+}
+
+.start-meeting {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.start-meeting iframe {
+  min-height: 90vh;
+  width: 100%;
 }/*# sourceMappingURL=profile.css.map */

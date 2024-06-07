@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactPlayer from 'react-player/youtube';
 
 const LessonCard = ({ lesson }) => {
   const [open, setOpen] = useState(false);
@@ -15,14 +16,32 @@ const LessonCard = ({ lesson }) => {
             >
               x
             </div>
-            <iframe
-              src={lesson?.videoUrl}
+            {/* <iframe
+              // src={lesson?.videoUrl}
+              src={`https://www.youtube.com/embed/${lesson?.videoUrl}`}
               loading="lazy"
               className="w-full h-full"
-              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+           
               allowfullscreen="true"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+              // referrerPolicy="no-referrer-when-downgrade"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="YouTube video player"
+            ></iframe> */}
+              <div className='player-wrapper w-full h-full'>
+      <ReactPlayer
+      className="w-full h-full react-player"
+      config={{
+        youtube: {
+          playerVars: { controls: 0 } // إخفاء أدوات التحكم
+        }
+      }}
+        url={lesson.videoUrl}
+        width='100%'
+        height='100%'
+        controls={true}
+      />
+    </div>
           </div>
         </div>
       )}

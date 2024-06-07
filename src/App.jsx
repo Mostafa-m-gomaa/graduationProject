@@ -39,6 +39,7 @@ import 'aos/dist/aos.css'; // Import the AOS styles
 import { AnimatePresence } from "framer-motion";
 import Legal from "./landingPage/components/Legal";
 import InstructorRequest from "./dashboard/InstructorRequest";
+import StartMeeting from "./dashboard/Profile/StartMeeting";
 
 
 
@@ -53,6 +54,7 @@ export default function App() {
   const [transOpen, setTransOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
+  const [liveLink, setLiveLink] = useState("");
   const [update, setUpdate] = useState(0);
   const [theme, setTheme] = useState("dark");
   useEffect(() => {
@@ -104,6 +106,8 @@ export default function App() {
         setCart,
         update,
         setUpdate,
+        liveLink,
+        setLiveLink
       }}
     >
       
@@ -149,6 +153,8 @@ export default function App() {
             <Route path="/marketing/team" element={<MarketingTree />} />
             <Route path="/marketing/log/:id" element={<Marketing />} />
             <Route path="/store" element={<Store />} />
+            <Route path="/start-meeting" element={<StartMeeting />} />
+            <Route path="/start-meeting/:id" element={<StartMeeting />} />
             <Route path="/freestore" element={<FreeStore />} />
             <Route path="/store/:id" element={<ProductPage />} />
             <Route path="/analytic" element={<Analytic />} />

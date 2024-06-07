@@ -1,9 +1,10 @@
 import { AppContext, route } from "../App";
 import { toast } from "react-hot-toast";
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const LiveCard = ({ live }) => {
-  const { setLoading } = useContext(AppContext);
+  const { setLoading , setLiveLink } = useContext(AppContext);
 
   const myId = JSON.parse(localStorage.getItem("data"))._id;
   const token = localStorage.getItem("token");
@@ -15,28 +16,30 @@ const LiveCard = ({ live }) => {
       live?.followers?.filter((user) => user.user === myId).length !== 0
     );
   }, [live]);
-  const followLive = (course, id) => {
-    if (isFollowed) {
-      toast.success("You Are Already following this live");
-    } else {
-      setLoading(true);
-      fetch(`${route}/education/lives/followLive/${course}/${id}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+  const followLive = (id) => {
+    // if (isFollowed) {
+    //   toast.success("You Are Already following this live");
+    // } else {
+    
+    // }
+    setLoading(true);
+    fetch(`${route}/lives/followLive/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === "success") {
+          toast.success("You Are Follow This Live Now");
+          setIsFollowed(true);
+        } else {
+          toast.success("You Are Already following this live");
+        }
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.succes == "true") {
-            toast.success("You Are Follow This Live Now");
-            setIsFollowed(true);
-          } else {
-            toast.success("You Are Already following this live");
-          }
-        })
-        .finally(() => setLoading(false));
-    }
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -78,23 +81,22 @@ const LiveCard = ({ live }) => {
           className={`w-full text-center py-3 rounded-full cursor-pointer ${
             isFollowed ? " text-gold bg-lightGold" : " border border-gold"
           }`}
-          onClick={() => followLive(live.course._id, live._id)}
+          onClick={() => followLive(live._id)}
         >
           {isFollowed ? "تمت المتابعة" : "تابع"}
         </div>
         {live.link ? (
-          <a
-            href={live.link}
-            target="_blank"
+          <Link
+            to={"/start-meeting"}
+           onClick={()=>setLiveLink(live.link)}
             className=" w-full text-center py-3 rounded-full bg-gold text-dark font-semibold"
             rel="noreferrer"
           >
             we are live
-          </a>
+          </Link>
         ) : (
           <div className="flex items-center justify-center gap-2 w-full text-center py-3 rounded-full bg-gold text-dark font-semibold">
-            شاهد المحاضرة
-          </div>
+---          </div>
         )}
       </div>
     </div>

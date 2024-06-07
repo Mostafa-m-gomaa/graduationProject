@@ -7,6 +7,7 @@ import { useContext, useEffect , useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-hot-toast";
 import AddReview from "./AddReview";
+import { Link } from "react-router-dom";
 import './profile.css'
 const Profile = () => {
   const data = JSON.parse(localStorage.getItem("data"));
@@ -91,6 +92,13 @@ const Profile = () => {
           <EditPassword />
           <AddReview />
           <EditData />
+   {localStorage.getItem("role") === "instructor" ?        <Link to="/start-meeting"
+        className="cursor-pointer flex items-center justify-center w-[200px] h-[40px] bg-lightGray text-dark gap-4 font-semibold rounded-2xl"
+        
+      >
+        
+       Start Meeting
+             </Link> : null}
    
         </div>
       </div>
