@@ -45,8 +45,9 @@ setCatId(id)
 
   useEffect(() => {
     axios
-      .get(`${route}users/instractors`)
+      .get(`${route}users/getInstructors`)
       .then((res) => {
+        console.log(res)
 
         setLeaders(res.data.data)});
   }, []);
@@ -58,7 +59,7 @@ setCatId(id)
   }, []);
 
   useEffect(() => {
-    fetch(`${route}/categories`)
+    fetch(`${route}categories`)
       .then((res) => res.json())
       .then((data) => {
       
@@ -135,7 +136,7 @@ setCatId(id)
         </div>
 
         {/* leaders */}
-        <div className="leaders" id="leaders" >
+        {/* <div className="leaders" id="leaders" >
           <img src={circle} data-aos-duration={`2000`} data-aos="fade-right"  className="circle" alt="" />
           <img src={shape} data-aos-duration={`2000`} data-aos="fade-left"   className="shape" alt="" />
 <h1>القادة</h1>
@@ -156,7 +157,7 @@ setCatId(id)
           <LoadingSpinner />
         )}
         </div>
-        </div>
+        </div> */}
     </>
   );
 };

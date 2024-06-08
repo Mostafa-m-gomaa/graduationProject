@@ -124,7 +124,7 @@ const Courses = () => {
                  By : {course.instructor.username}
                 </h2>
                 <img src={course.image}  className="aspect-square  rounded-2xl" alt="" />
-                <h2 style={{
+                {/* <h2 style={{
                   textAlign: "center",
               
                   width: "fit-content",
@@ -133,7 +133,7 @@ const Courses = () => {
                   borderRadius: "10px",
                 }}>
                   {course.description}$
-                </h2>
+                </h2> */}
                 <h2 style={{
                   textAlign: "center",
                   border: "1px solid #fff",
@@ -144,9 +144,24 @@ const Courses = () => {
                 }}>
                   {course.price}$ after discount {course.priceAfterDiscount} $
                 </h2>
+                <Link to={`/courseDetails/${course._id}`}>
+                <h2 style={{
+                  textAlign: "center",
+                 
+                  width: "fit-content",
+                  margin: " auto",
+                  padding: "5px 15px",
+                  borderRadius: "7px",
+                  cursor: "pointer",
+                  backgroundColor: "#3846a1",
+                  marginBottom: "10px"
+                }}>
+                  View Course
+                </h2>
+                </Link>
                 <h2 onClick={()=>buy(course._id)} style={{
                   textAlign: "center",
-                  border: "1px solid #fff",
+                
                   width: "fit-content",
                   margin: " auto",
                   padding: "5px 15px",
