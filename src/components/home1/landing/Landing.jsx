@@ -19,7 +19,7 @@ const Landing = () => {
            <div className="left">
            <h1>تجربة تعلم جديدة </h1>
            <h1>العلم نور</h1>
-           <p>والي مش عايزه يغور</p>
+          
 <Link to="/login">يلا بينا</Link>
            </div>
            <div className="right">

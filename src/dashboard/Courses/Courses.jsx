@@ -10,23 +10,7 @@ const Courses = () => {
   const token = localStorage.getItem("token");
   const catId = useParams().catId;
 
-  // useEffect(() => {
-  //   setLoading(true);
 
-  //   fetch(
-  //     `${route}education/courses/relatedCourses/${catId}?sort=orderNumber`,
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     }
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setCourses(data.data);
-  //     })
-  //     .finally(() => setLoading(false));
-  // }, []);
   useEffect(() => {
     setLoading(true);
     if(sessionStorage.getItem("catId")){

@@ -40,6 +40,7 @@ import { AnimatePresence } from "framer-motion";
 import Legal from "./landingPage/components/Legal";
 import InstructorRequest from "./dashboard/InstructorRequest";
 import StartMeeting from "./dashboard/Profile/StartMeeting";
+import SpecCourse from "./dashboard/Courses/SpecCourse";
 
 
 
@@ -154,6 +155,7 @@ export default function App() {
             <Route path="/marketing/log/:id" element={<Marketing />} />
             <Route path="/store" element={<Store />} />
             <Route path="/start-meeting" element={<StartMeeting />} />
+            <Route path="/courseDetails/:id" element={<SpecCourse />} />
             <Route path="/start-meeting/:id" element={<StartMeeting />} />
             <Route path="/freestore" element={<FreeStore />} />
             <Route path="/store/:id" element={<ProductPage />} />
